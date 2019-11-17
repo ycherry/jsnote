@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  </head>
+  <body>
+    <script>
+      所有编程语言都离不开的三大数据类型:
+      1. 标量 scalar 字符串和数字
+      2. 序列 sequence 数组和列表 
+      3. 映射 mapping 键值对
+
+
+      页面渲染顺序：
+      解析 -> 加载
+      解析：
+      domTree -> DOM树构建（深度优先原则） 所有元素都会解析包括display:none的元素，因为样式属于cssTree
+      cssTree -> 样式结构体
+      渲染树 = domTree + cssTree
+      1. 渲染树每个节点都有自己的样式
+      2. 不包括display: none, head之类不需要绘制的节点
+      3. visibility:hidden相对应的节点是包含在渲染树上的
+      4. 渲染树上的每个节点都会被当作一个盒子：
+         具有内容填充 边距 边框 位置 大小 其他样式
+
+      重绘
+      回流时， 浏览器会重新构建受影响的部分渲染树 -> 重绘
+      回流完成后， 浏览器会根据新的渲染树重新绘制回流影响的部分酒店，这个重新绘制的过程就是重绘
+
+      引起回流的因素：
+      1. DOM节点的增加，删除
+      2. DOM节点位置的变化
+      3. 元素的尺寸、边距、填充、边框、宽高
+      4. DOM节点 display显示与否
+      5. 页面渲染初始化
+      6. 浏览器尺寸的变化-> resize
+      7. 向浏览器请求某些样式信息
+         offset, scroll, client, width, height, getComputedStyle, currentStyle
+
+      减少回流的方法：
+      1. 尽量不使用element.style操作样式，用class取代，class只会有一次回流和一次重绘 
+      this.style.width = '200px'; 回流 + 重绘
+      this.style.height = '200px'; 回流 + 重绘
+      this.style.color = 'red'; 重绘
+      this.style.border = '1px'; 回流 + 重绘
+      2.使用 this.style.cssText
+      this.style.cssText = '\
+      width:20px;\
+      height:20px';
+      3.使用 document.createDocumentFragment
+      4. 先将属性设置为display:none, 将所有属性设置完成之后再设置display: block
+      this.style.dispaly = 'none'; 回流 + 重绘
+      this.style.width = '200px'; 
+      this.style.height = '200px';
+      this.style.color = 'red';
+      this.style.border = '1px';
+      this.style.dispaly = 'block'; 回流 + 重绘
+      5. 将div.offsetLeft缓存起来，不能每次直接用，因为div.offset每用一次就会引起一次回流
+      6. 动画元素一定要绝对定位， 因为marginLeft会引起回流
+      7. 不要使用table布局
+
+
+    </script>
+  </body>
+</html>

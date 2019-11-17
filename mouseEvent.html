@@ -1,0 +1,58 @@
+<html>
+  <head>
+    <style type="text/css">
+      body {
+        margin: 0;
+      }
+      .box {
+        position: relative;
+        height: 100px;
+        width: 100px;
+        background-color: orange;
+        left: 0;
+        top: 0;
+      }
+
+      .menu {
+        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        background-color: palegreen;
+      }
+    </style>
+    <script type="text/javascript" src="utils.js"></script>
+    <script type="text/javascript" src="drag.js"></script>
+  </head>
+  <body>
+    <div class="box"></div>
+    <div class="menu"></div>
+    <script>
+      // clientX/Y  鼠标位置相对于当前可视区域的坐标（不包括滚动条的距离 ） 无兼容性问题
+      // layerX/Y   相当于pageX/Y  IE11以下同clientX/Y
+      // screenX/Y  鼠标相对于浏览器屏幕的坐标
+      // x/y        相当于clientX （老版的FF不支持）
+      // pageX/Y    鼠标位置相对于当前文档的坐标（包括滚动条）IE9以下不支持
+
+
+      // offsetX/Y 鼠标元素相对于块元素的坐标（包含边框，safari不包含边框）
+
+
+      // pageX = e.clientX + scrollLeft - 不同浏览器的margin（document.documentElement.clientLeft)
+
+      //拖拽
+      // mousedown mouseup mousemove
+      var oBox = document.getElementsByClassName("box")[0];
+      var oMenu = document.getElementsByClassName("menu")[0];
+      oBox.dragNclick(oMenu, function() {
+        console.log('click called');
+      });
+      // elemDrag(box);
+
+      // mousedown + mouseup = click
+
+    </script>
+  </body>
+</html>
