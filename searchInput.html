@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Search</title>
+    <style type="text/css">
+      input {
+        outline: none;
+        border: 1px solid #ccc;
+      }
+
+      input:focus {
+        border: 1px solid blue;
+        box-shadow: 0 0 5px blue;
+      }
+
+      .search-input {
+        color: #999;
+      }
+
+      .search-input.has-value {
+        color: #000;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="text"
+           id="content"
+           class="search-input"
+           value="please type value"
+           onfocus="if(this.value==='please type value'){this.value = ''; this.className = 'has-value'}"
+           onblur="if(this.value === ''){ this.value = 'please type value'; this.className='search-input';}"/>
+    <div></div>
+    <script type="text/javascript">
+      var content = document.getElementById('content'),
+          div = document.getElementsByTagName('div')[0];
+      // onchange: 失去焦点触发，并且只有input的值改变了才触发
+      // oninput: 输入值的时候触发
+      // onpropertychange 输入值的时候触发 
+      // oninput/onpropertychange 有兼容性问题， 两个需要一起写上
+      // onblur/onfocus
+      // placeholder 很难改样式，也很难自定义
+
+      // 模拟placeholder
+      // content.onfocus = function() {
+      //   if(this.value === 'please type value') {
+      //     this.value = '';
+      //     this.className = 'has-value'
+      //   }
+      //   this.className += 'focus';
+      //   // this.style.color = '#000';
+      // };
+
+      // content.onblur = function() {
+      //   if(this.value === '') {
+      //     this.value = 'please type value';
+      //     this.className = '';
+      //     this.style.color = '#999';
+      //   } else {
+      //     this.className = 'has-value';
+      //   }
+      // }
+    </script>
+  </body>
+</html>
